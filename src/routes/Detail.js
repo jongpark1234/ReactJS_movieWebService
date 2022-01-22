@@ -9,7 +9,7 @@ function Detail() {
         const json = await (
             await fetch(`https://yts.mx/api/v2/movie_details.json?movie_id=${id}`)
         ).json()
-        setInfos(json.data)
+        setInfos(json.data.movie)
         setLoading(false)
     }
     useEffect(() => {getMovie()}, [])
@@ -21,10 +21,12 @@ function Detail() {
             ) : (
             <div>
                 <MovieInfo
-                    title={infos.movie.title}
-                    coverImg={infos.movie.medium_cover_image}
-                    uploaded={infos.movie.date_uploaded}
-                    downloadCount={infos.movie.download_count}
+                    title={infos.title}
+                    coverImg={infos.medium_cover_image}
+                    uploaded={infos.date_uploaded}
+                    downloadCount={infos.download_count}
+                    genres={infos.genres}
+                    summary={infos.description_intro}
                 />
             </div>
             )}
